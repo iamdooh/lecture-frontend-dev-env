@@ -1,40 +1,40 @@
-import FormView from "../views/FormView.js";
-import ResultView from "../views/ResultView.js";
-import TabView from "../views/TabView.js";
-import KeywordView from "../views/KeywordView.js";
-import HistoryView from "../views/HistoryView.js";
+import FormView from '../views/FormView.js';
+import ResultView from '../views/ResultView.js';
+import TabView from '../views/TabView.js';
+import KeywordView from '../views/KeywordView.js';
+import HistoryView from '../views/HistoryView.js';
 
-import SearchModel from "../models/SearchModel.js";
-import KeywordModel from "../models/KeywordModel.js";
-import HistoryModel from "../models/HistoryModel.js";
+import SearchModel from '../models/SearchModel.js';
+import KeywordModel from '../models/KeywordModel.js';
+import HistoryModel from '../models/HistoryModel.js';
 
 export default class MainController {
   constructor() {
-    const formViewEl = document.querySelector("form");
-    const tabViewEl = document.querySelector("#tabs");
-    const keywordViewEl = document.querySelector("#search-keyword");
-    const historyViewEl = document.querySelector("#search-history");
-    const resultViewEl = document.querySelector("#search-result");
+    const formViewEl = document.querySelector('form');
+    const tabViewEl = document.querySelector('#tabs');
+    const keywordViewEl = document.querySelector('#search-keyword');
+    const historyViewEl = document.querySelector('#search-history');
+    const resultViewEl = document.querySelector('#search-result');
 
     this.formView = new FormView(formViewEl)
-      .on("@submit", e => this.search(e.detail.input))
-      .on("@reset", () => this.renderView());
+      .on('@submit', (e) => this.search(e.detail.input))
+      .on('@reset', () => this.renderView());
 
-    this.tabView = new TabView(tabViewEl).on("@change", e =>
+    this.tabView = new TabView(tabViewEl).on('@change', (e) =>
       this.onChangeTab(e.detail.tabName)
     );
 
-    this.keywordView = new KeywordView(keywordViewEl).on("@click", e =>
+    this.keywordView = new KeywordView(keywordViewEl).on('@click', (e) =>
       this.search(e.detail.keyword)
     );
 
     this.historyView = new HistoryView(historyViewEl)
-      .on("@click", e => this.search(e.detail.keyword))
-      .on("@remove", e => this.onRemoveHistory(e.detail.keyword));
+      .on('@click', (e) => this.search(e.detail.keyword))
+      .on('@remove', (e) => this.onRemoveHistory(e.detail.keyword));
 
     this.resultView = new ResultView(resultViewEl);
 
-    this.selectedTab = "추천 검색어";
+    this.selectedTab = '추천 검색어';
     this.renderView();
   }
 
@@ -59,7 +59,7 @@ export default class MainController {
   async renderView() {
     this.tabView.setActiveTab(this.selectedTab);
 
-    if (this.selectedTab === "추천 검색어") {
+    if (this.selectedTab === '추천 검색어') {
       const data = await KeywordModel.list();
       this.keywordView.mount(data);
       this.historyView.hide();

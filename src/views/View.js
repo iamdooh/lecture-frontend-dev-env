@@ -13,19 +13,19 @@ export default class View {
 
   emit(event, data) {
     const evt = new CustomEvent(event, {
-      detail: data
+      detail: data,
     });
     this.el.dispatchEvent(evt);
     return this;
   }
 
   hide() {
-    this.el.style.display = "none";
+    this.el.style.display = 'none';
     return this;
   }
 
   show() {
-    this.el.style.display = "";
+    this.el.style.display = '';
     return this;
   }
 }

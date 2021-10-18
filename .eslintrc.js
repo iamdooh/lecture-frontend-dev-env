@@ -1,9 +1,10 @@
 module.exports = {
     "env": {
+        "node": true,
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -14,5 +15,10 @@ module.exports = {
     },
     // TODO: 프리티어 설정을 추가하세요.
     "rules": {
+      "prettier/prettier": [
+        "error", {
+          singleQuote: true
+        }
+      ]
     }
 };

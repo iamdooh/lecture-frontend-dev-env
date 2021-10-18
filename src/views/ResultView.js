@@ -1,13 +1,13 @@
-import View from "./View.js";
-import defaultImage from "../images/default-image.jpg";
-import "./ResultView.scss";
+import View from './View.js';
+import defaultImage from '../images/default-image.jpg';
+import './ResultView.scss';
 
 export default class ResultView extends View {
   constructor(el) {
     super(el);
 
     this.messages = {
-      NO_RESULT: "검색 결과가 없습니다"
+      NO_RESULT: '검색 결과가 없습니다',
     };
   }
 
@@ -23,7 +23,7 @@ export default class ResultView extends View {
       data.reduce((html, item) => {
         html += this.getSearchItemHtml(item);
         return html;
-      }, "<ul>") + "</ul>"
+      }, '<ul>') + '</ul>'
     );
   }
 

@@ -1,5 +1,5 @@
-import View from "./View.js";
-import "./TabView.scss";
+import View from './View.js';
+import './TabView.scss';
 
 export default class TabView extends View {
   constructor(el) {
@@ -21,19 +21,19 @@ export default class TabView extends View {
   }
 
   bindEvents() {
-    this.tabItems.forEach(li => {
-      li.addEventListener("click", () => this.onClick(li.innerHTML));
+    this.tabItems.forEach((li) => {
+      li.addEventListener('click', () => this.onClick(li.innerHTML));
     });
   }
 
   onClick(tabName) {
     this.setActiveTab(tabName);
-    this.emit("@change", { tabName });
+    this.emit('@change', { tabName });
   }
 
   setActiveTab(tabName) {
-    this.tabItems.forEach(li => {
-      li.className = li.innerHTML === tabName ? "active" : "";
+    this.tabItems.forEach((li) => {
+      li.className = li.innerHTML === tabName ? 'active' : '';
     });
     this.show();
   }
